@@ -19,6 +19,8 @@ export function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  const [googleLoading, setGoogleLoading] = useState(false)
+
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
   })
@@ -34,7 +36,14 @@ export function LoginPage() {
   }
 
   async function handleGoogle() {
-    await signInWithGoogle()
+    setError(null)
+    setGoogleLoading(true)
+    const { error } = await signInWithGoogle()
+    if (error) {
+      setError('Não foi possível iniciar o login com Google. Tente novamente.')
+      setGoogleLoading(false)
+    }
+    // em caso de sucesso, o redirect acontece automaticamente — não precisa setar loading false
   }
 
   return (
@@ -105,15 +114,19 @@ export function LoginPage() {
 
       <button
         type="button"
-        className="btn btn-outline-secondary w-100 mb-4"
+        className="btn btn-outline-secondary w-100 mb-4 d-flex align-items-center justify-content-center gap-2"
         onClick={handleGoogle}
+        disabled={googleLoading}
       >
-        <img
-          src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-          alt="Google"
-          width={18}
-          className="me-2"
-        />
+        {googleLoading ? (
+          <span className="spinner-border spinner-border-sm" />
+        ) : (
+          <img
+            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            alt="Google"
+            width={18}
+          />
+        )}
         Continuar com Google
       </button>
 
