@@ -249,7 +249,7 @@ export function SettingsPage() {
 
       {/* ── App info ── */}
       <div className="card border-0 shadow-sm p-4">
-        <h6 className="fw-bold mb-3">Sobre o Baby Journey</h6>
+        <h6 className="fw-bold mb-3">Sobre o Baby's Plan</h6>
         <div className="text-muted small">
           <div className="mb-1">Versão: <strong>Sprint 9</strong></div>
           <div className="mb-1">Família: <strong>{tenant?.name}</strong></div>

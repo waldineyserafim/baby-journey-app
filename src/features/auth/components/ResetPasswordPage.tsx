@@ -127,7 +127,7 @@ export function ResetPasswordPage() {
             style={{ width: 64, height: 64, background: 'linear-gradient(135deg, #f9a8d4, #c084fc)' }}>
             <Baby size={32} className="text-white" />
           </div>
-          <h1 className="fw-bold mb-1" style={{ color: '#7c3aed' }}>Baby Journey</h1>
+          <h1 className="fw-bold mb-1" style={{ color: '#7c3aed' }}>Baby's Plan</h1>
         </div>
 
         <div className="card shadow-sm border-0">

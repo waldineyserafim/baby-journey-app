@@ -56,7 +56,7 @@ export function ReportsPage() {
       due_date: pregnancy.due_date,
       lmp_date: pregnancy.lmp_date,
     })
-    const filename = `baby-journey-${format(new Date(), 'yyyy-MM-dd')}.csv`
+    const filename = `babys-plan-${format(new Date(), 'yyyy-MM-dd')}.csv`
     downloadCSV(csv, filename)
   }
 

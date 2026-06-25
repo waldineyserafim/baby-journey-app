@@ -53,7 +53,7 @@ export function generateCSV(report: ReportData, pregnancyInfo: { due_date: strin
   const row = (...cols: (string | number | null | undefined)[]) =>
     lines.push(cols.map(c => `"${String(c ?? '').replace(/"/g, '""')}"`).join(sep))
 
-  lines.push('RESUMO DA GESTAÇÃO — Baby Journey')
+  lines.push("RESUMO DA GESTAÇÃO — Baby's Plan")
   lines.push(`Gerado em: ${new Date().toLocaleString('pt-BR')}`)
   lines.push('')
 

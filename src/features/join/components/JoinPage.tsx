@@ -76,7 +76,7 @@ export function JoinPage() {
           >
             <Heart size={32} color="white" fill="white" />
           </div>
-          <h3 className="fw-bold mb-1" style={{ color: '#1e1b4b' }}>Baby Journey</h3>
+          <h3 className="fw-bold mb-1" style={{ color: '#1e1b4b' }}>Baby's Plan</h3>
           <p className="text-muted small mb-0">Compartilhamento de Gestação</p>
         </div>
 
@@ -102,7 +102,7 @@ export function JoinPage() {
             <p className="text-muted small mb-4">
               {invitation?.invited_name
                 ? `${invitation.invited_name}, você`
-                : 'Você'} foi convidado(a) para compartilhar uma gestação no Baby Journey.
+                : 'Você'} foi convidado(a) para compartilhar uma gestação no Baby's Plan.
               {!isExpired && (
                 <span className="d-block mt-1 text-muted">
                   Válido até {new Date(invitation!.expires_at).toLocaleDateString('pt-BR')}

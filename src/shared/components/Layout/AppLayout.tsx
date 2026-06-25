@@ -115,7 +115,7 @@ export function AppLayout() {
             >
               <Baby size={18} className="text-white" />
             </div>
-            <span className="fw-bold fs-6" style={{ color: '#7c3aed' }}>Baby Journey</span>
+            <span className="fw-bold fs-6" style={{ color: '#7c3aed' }}>Baby's Plan</span>
           </div>
         </div>
 
@@ -155,7 +155,7 @@ export function AppLayout() {
               style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', fontSize: '0.75rem' }}
               onClick={install}
             >
-              📲 Instalar Baby Journey
+              📲 Instalar Baby's Plan
             </button>
           </div>
         )}
@@ -196,7 +196,7 @@ export function AppLayout() {
           >
             <Baby size={14} className="text-white" />
           </div>
-          <span className="fw-bold" style={{ color: '#7c3aed', fontSize: '1rem' }}>Baby Journey</span>
+          <span className="fw-bold" style={{ color: '#7c3aed', fontSize: '1rem' }}>Baby's Plan</span>
         </div>
         <NavLink
           to={ROUTES.NOTIFICATIONS}
@@ -338,7 +338,7 @@ export function AppLayout() {
                 style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', borderRadius: 12 }}
                 onClick={() => { install(); setMenuOpen(false) }}
               >
-                📲 Instalar Baby Journey no celular
+                📲 Instalar Baby's Plan no celular
               </button>
             )}
 

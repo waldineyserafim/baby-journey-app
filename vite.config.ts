@@ -11,8 +11,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icons/*.png', 'icons/*.svg'],
       manifest: {
-        name: 'Baby Journey',
-        short_name: 'BabyJourney',
+        name: "Baby's Plan",
+        short_name: "Baby's Plan",
         description: 'Acompanhe cada momento da sua gravidez',
         theme_color: '#f472b6',
         background_color: '#ffffff',

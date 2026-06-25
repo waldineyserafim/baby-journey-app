@@ -15,7 +15,7 @@ export function AuthLayout() {
           >
             <Baby size={32} className="text-white" />
           </div>
-          <h1 className="fw-bold mb-1" style={{ color: '#7c3aed' }}>Baby Journey</h1>
+          <h1 className="fw-bold mb-1" style={{ color: '#7c3aed' }}>Baby's Plan</h1>
           <p className="text-muted small">Acompanhe cada momento da sua gravidez</p>
         </div>
         <div className="card shadow-sm border-0">

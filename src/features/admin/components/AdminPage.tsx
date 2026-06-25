@@ -345,7 +345,7 @@ export function AdminPage() {
         <ShieldAlert size={20} style={{ color: '#7c3aed' }} />
         <div>
           <h4 className="fw-bold mb-0">Painel Admin</h4>
-          <p className="text-muted small mb-0">Baby Journey — plataforma</p>
+          <p className="text-muted small mb-0">Baby's Plan — plataforma</p>
         </div>
       </div>
 

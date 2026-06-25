@@ -140,7 +140,7 @@ export function LoginPage() {
   return (
     <>
       <h2 className="fw-bold mb-1 text-center" style={{ fontSize: '1.25rem' }}>Entrar</h2>
-      <p className="text-muted text-center small mb-4">Acesse sua conta Baby Journey</p>
+      <p className="text-muted text-center small mb-4">Acesse sua conta Baby's Plan</p>
 
       {error && <div className="alert alert-danger py-2 small">{error}</div>}
 
