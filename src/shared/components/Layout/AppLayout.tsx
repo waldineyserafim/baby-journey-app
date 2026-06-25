@@ -16,10 +16,10 @@ import {
   Globe,
   Stethoscope,
   FileText,
-  Settings,
   LogOut,
   Bell,
   ChevronDown,
+  Sparkles,
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -37,6 +37,7 @@ const navItems = [
   { to: ROUTES.CONTRACTIONS, icon: Timer, label: 'Contrações' },
   { to: ROUTES.LAYETTE, icon: ShoppingCart, label: 'Enxoval' },
   { to: ROUTES.HOSPITAL_BAG, icon: FileText, label: 'Mala' },
+  { to: ROUTES.LAYETTE_INTELLIGENCE, icon: Sparkles, label: 'Inteligência' },
   { to: ROUTES.INTERNATIONAL_MOVE, icon: Globe, label: 'Mudança' },
 ]
 
