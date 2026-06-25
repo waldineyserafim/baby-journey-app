@@ -16,7 +16,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 export function RegisterPage() {
-  const { signUp } = useAuth()
+  const { signUp, refreshProfile } = useAuth()
   const navigate = useNavigate()
   const [error, setError] = useState<string | null>(null)
 
@@ -54,6 +54,7 @@ export function RegisterPage() {
       role: 'partner',
     })
 
+    await refreshProfile()
     navigate(ROUTES.ONBOARDING)
   }
 

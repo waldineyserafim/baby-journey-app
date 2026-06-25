@@ -52,4 +52,5 @@ export const ROUTES = {
 
   SETTINGS: '/settings',
   JOIN: '/join/:code',
+  RESET_PASSWORD: '/reset-password',
 } as const
