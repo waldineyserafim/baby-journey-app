@@ -22,9 +22,11 @@ import {
   ChevronDown,
   Sparkles,
   BarChart3,
+  ShieldAlert,
 } from 'lucide-react'
 import { useState } from 'react'
 import { useUnreadCount } from '@/features/notifications/hooks/useNotifications'
+import { useInstallPrompt } from '@/shared/hooks/useInstallPrompt'
 
 const navItems = [
   { to: ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },
@@ -45,6 +47,7 @@ const navItems = [
   { to: ROUTES.DOCUMENTS, icon: FolderOpen, label: 'Documentos' },
   { to: ROUTES.NOTIFICATIONS, icon: Bell, label: 'Notificações' },
   { to: ROUTES.REPORTS, icon: BarChart3, label: 'Relatórios' },
+  { to: ROUTES.ADMIN, icon: ShieldAlert, label: 'Admin' },
 ]
 
 export function AppLayout() {
@@ -52,6 +55,7 @@ export function AppLayout() {
   const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { data: unreadCount = 0 } = useUnreadCount()
+  const { canInstall, install } = useInstallPrompt()
 
   async function handleSignOut() {
     await signOut()
@@ -105,6 +109,20 @@ export function AppLayout() {
             </li>
           ))}
         </ul>
+
+        {/* PWA install banner */}
+        {canInstall && (
+          <div className="mx-2 mb-2 p-2 rounded-3 text-center" style={{ background: 'linear-gradient(135deg, #ede9fe, #fce7f3)', fontSize: '0.75rem' }}>
+            <div className="fw-semibold mb-1" style={{ color: '#7c3aed' }}>Instalar no celular</div>
+            <button
+              className="btn btn-sm text-white w-100"
+              style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', fontSize: '0.72rem' }}
+              onClick={install}
+            >
+              📲 Instalar Baby Journey
+            </button>
+          </div>
+        )}
 
         {/* User footer */}
         <div className="px-3 py-3 border-top">
