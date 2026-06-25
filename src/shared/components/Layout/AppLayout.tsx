@@ -21,8 +21,10 @@ import {
   Bell,
   ChevronDown,
   Sparkles,
+  BarChart3,
 } from 'lucide-react'
 import { useState } from 'react'
+import { useUnreadCount } from '@/features/notifications/hooks/useNotifications'
 
 const navItems = [
   { to: ROUTES.DASHBOARD, icon: LayoutDashboard, label: 'Dashboard' },
@@ -41,12 +43,15 @@ const navItems = [
   { to: ROUTES.LAYETTE_INTELLIGENCE, icon: Sparkles, label: 'Inteligência' },
   { to: ROUTES.INTERNATIONAL_MOVE, icon: Globe, label: 'Mudança' },
   { to: ROUTES.DOCUMENTS, icon: FolderOpen, label: 'Documentos' },
+  { to: ROUTES.NOTIFICATIONS, icon: Bell, label: 'Notificações' },
+  { to: ROUTES.REPORTS, icon: BarChart3, label: 'Relatórios' },
 ]
 
 export function AppLayout() {
   const { profile, signOut } = useAuth()
   const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const { data: unreadCount = 0 } = useUnreadCount()
 
   async function handleSignOut() {
     await signOut()
@@ -140,8 +145,16 @@ export function AppLayout() {
             <ChevronDown size={20} />
           </button>
           <span className="fw-bold" style={{ color: '#7c3aed' }}>Baby Journey</span>
-          <NavLink to={ROUTES.NOTIFICATIONS} className="btn btn-sm text-secondary p-1">
+          <NavLink to={ROUTES.NOTIFICATIONS} className="btn btn-sm text-secondary p-1 position-relative">
             <Bell size={20} />
+            {unreadCount > 0 && (
+              <span
+                className="position-absolute top-0 end-0 badge rounded-pill bg-danger"
+                style={{ fontSize: '0.55rem', padding: '2px 4px', minWidth: 16 }}
+              >
+                {unreadCount > 9 ? '9+' : unreadCount}
+              </span>
+            )}
           </NavLink>
         </header>
 
