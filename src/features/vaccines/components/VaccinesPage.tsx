@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { format, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { Syringe, Plus, Check, Clock, AlertCircle, Trash2, X } from 'lucide-react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useVaccines } from '../hooks/useVaccines'
@@ -40,12 +40,12 @@ export function VaccinesPage() {
   const [customName, setCustomName] = useState(false)
 
   const addForm = useForm<AddValues>({
-    resolver: zodResolver(addSchema),
+    resolver: zodResolver(addSchema) as any,
     defaultValues: { vaccine_name: '', status: 'pending', scheduled_date: '', applied_date: '', notes: '' },
   })
 
   const editForm = useForm<EditValues>({
-    resolver: zodResolver(editSchema),
+    resolver: zodResolver(editSchema) as any,
   })
 
   const existingNames = new Set(vaccines.map(v => v.vaccine_name))
@@ -178,7 +178,7 @@ export function VaccinesPage() {
       {/* Modal: Adicionar */}
       {addModal && (
         <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title fw-bold">Adicionar Vacina</h5>
@@ -237,11 +237,11 @@ export function VaccinesPage() {
                   </div>
 
                   <div className="row g-3 mb-3">
-                    <div className="col-6">
+                    <div className="col-12 col-sm-6">
                       <label className="form-label fw-semibold">Data Agendada</label>
                       <input {...addForm.register('scheduled_date')} type="date" className="form-control" />
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-sm-6">
                       <label className="form-label fw-semibold">Data Aplicação</label>
                       <input {...addForm.register('applied_date')} type="date" className="form-control" />
                     </div>
@@ -268,7 +268,7 @@ export function VaccinesPage() {
       {/* Modal: Editar */}
       {editingId && (
         <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title fw-bold">Atualizar Vacina</h5>
@@ -285,11 +285,11 @@ export function VaccinesPage() {
                     </select>
                   </div>
                   <div className="row g-3 mb-3">
-                    <div className="col-6">
+                    <div className="col-12 col-sm-6">
                       <label className="form-label fw-semibold">Data Agendada</label>
                       <input {...editForm.register('scheduled_date')} type="date" className="form-control" />
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-sm-6">
                       <label className="form-label fw-semibold">Data Aplicação</label>
                       <input {...editForm.register('applied_date')} type="date" className="form-control" />
                     </div>

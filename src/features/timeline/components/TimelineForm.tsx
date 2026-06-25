@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { format } from 'date-fns'
@@ -26,7 +26,7 @@ interface Props {
 
 export function TimelineForm({ initial, onSubmit, onClose, loading }: Props) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<TimelineFormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema) as unknown as Resolver<TimelineFormValues>,
     defaultValues: {
       title: '',
       milestone_type: '',
@@ -52,7 +52,7 @@ export function TimelineForm({ initial, onSubmit, onClose, loading }: Props) {
 
   return (
     <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title fw-bold">

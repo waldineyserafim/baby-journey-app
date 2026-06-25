@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import type { Exam } from '../services/examService'
@@ -26,7 +26,7 @@ interface Props {
 
 export function ExamForm({ initial, onSubmit, onClose, loading }: Props) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema) as unknown as Resolver<FormValues>,
     defaultValues: {
       exam_name: '',
       exam_type: 'laboratorial',
@@ -67,7 +67,7 @@ export function ExamForm({ initial, onSubmit, onClose, loading }: Props) {
 
   return (
     <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered modal-lg">
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title fw-bold">{initial ? 'Editar Exame' : 'Novo Exame'}</h5>
@@ -77,7 +77,7 @@ export function ExamForm({ initial, onSubmit, onClose, loading }: Props) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="modal-body">
               <div className="row g-3 mb-3">
-                <div className="col-8">
+                <div className="col-12 col-sm-8">
                   <label className="form-label fw-semibold">Nome do Exame *</label>
                   <input
                     {...register('exam_name')}
@@ -86,7 +86,7 @@ export function ExamForm({ initial, onSubmit, onClose, loading }: Props) {
                   />
                   {errors.exam_name && <div className="invalid-feedback">{errors.exam_name.message}</div>}
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <label className="form-label fw-semibold">Tipo</label>
                   <select {...register('exam_type')} className="form-select">
                     <option value="laboratorial">Laboratorial</option>
@@ -97,7 +97,7 @@ export function ExamForm({ initial, onSubmit, onClose, loading }: Props) {
               </div>
 
               <div className="row g-3 mb-3">
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <label className="form-label fw-semibold">Data *</label>
                   <input
                     {...register('exam_date')}
@@ -106,7 +106,7 @@ export function ExamForm({ initial, onSubmit, onClose, loading }: Props) {
                   />
                   {errors.exam_date && <div className="invalid-feedback">{errors.exam_date.message}</div>}
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <label className="form-label fw-semibold">Semana Gestacional</label>
                   <input
                     {...register('week_number')}
@@ -117,7 +117,7 @@ export function ExamForm({ initial, onSubmit, onClose, loading }: Props) {
                     placeholder="Ex: 20"
                   />
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <label className="form-label fw-semibold">Médico</label>
                   <input
                     {...register('doctor_name')}

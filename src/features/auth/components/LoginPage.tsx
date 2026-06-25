@@ -57,13 +57,14 @@ export function LoginPage() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
-          <label className="form-label small fw-semibold">Email</label>
+          <label htmlFor="login-email" className="form-label small fw-semibold">Email</label>
           <div className="input-group">
             <span className="input-group-text bg-light border-end-0">
               <Mail size={16} className="text-muted" />
             </span>
             <input
               {...register('email')}
+              id="login-email"
               type="email"
               className={`form-control border-start-0 ${errors.email ? 'is-invalid' : ''}`}
               placeholder="seu@email.com"
@@ -73,13 +74,14 @@ export function LoginPage() {
         </div>
 
         <div className="mb-4">
-          <label className="form-label small fw-semibold">Senha</label>
+          <label htmlFor="login-password" className="form-label small fw-semibold">Senha</label>
           <div className="input-group">
             <span className="input-group-text bg-light border-end-0">
               <Lock size={16} className="text-muted" />
             </span>
             <input
               {...register('password')}
+              id="login-password"
               type={showPassword ? 'text' : 'password'}
               className={`form-control border-start-0 border-end-0 ${errors.password ? 'is-invalid' : ''}`}
               placeholder="••••••••"

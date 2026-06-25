@@ -1,10 +1,10 @@
 import { supabase } from '@/infrastructure/supabase/client'
 
 export interface ReportData {
-  appointments: { id: string; status: string; appointment_at: string; doctor_name: string | null; specialty: string | null }[]
-  exams: { id: string; exam_date: string; name: string; has_result: boolean | null }[]
+  appointments: { id: string; status: string; appointment_at: string; doctor_name: string | null; appointment_type: string | null }[]
+  exams: { id: string; exam_date: string; exam_name: string; result: string | null }[]
   vaccines: { id: string; vaccine_name: string; status: string }[]
-  symptoms: { id: string; log_date: string; symptom_name: string; severity: string | null }[]
+  symptoms: { id: string; log_date: string; nausea_level: number | null; pain_description: string | null }[]
   kicks: { id: string; count_date: string; kick_count: number }[]
   diary: { id: string; entry_date: string; mood: string | null; energy_level: number | null }[]
   photos: { id: string; category: string; photo_date: string }[]
@@ -21,10 +21,10 @@ export async function fetchReportData(
     apptRes, examRes, vaccRes, sympRes, kickRes,
     diaryRes, photoRes, layRes, bagRes, timeRes,
   ] = await Promise.all([
-    supabase.from('appointments').select('id,status,appointment_at,doctor_name,specialty').eq('pregnancy_id', pregnancyId).order('appointment_at'),
-    supabase.from('exams').select('id,exam_date,name,has_result').eq('pregnancy_id', pregnancyId).order('exam_date'),
+    supabase.from('appointments').select('id,status,appointment_at,doctor_name,appointment_type').eq('pregnancy_id', pregnancyId).order('appointment_at'),
+    supabase.from('exams').select('id,exam_date,exam_name,result').eq('pregnancy_id', pregnancyId).order('exam_date'),
     supabase.from('vaccines').select('id,vaccine_name,status').eq('pregnancy_id', pregnancyId),
-    supabase.from('symptoms_log').select('id,log_date,symptom_name,severity').eq('pregnancy_id', pregnancyId).order('log_date'),
+    supabase.from('symptoms_log').select('id,log_date,nausea_level,pain_description').eq('pregnancy_id', pregnancyId).order('log_date'),
     supabase.from('kick_counts').select('id,count_date,kick_count').eq('pregnancy_id', pregnancyId).order('count_date'),
     supabase.from('diary_entries').select('id,entry_date,mood,energy_level').eq('pregnancy_id', pregnancyId).order('entry_date'),
     supabase.from('photos').select('id,category,photo_date').eq('pregnancy_id', pregnancyId).order('photo_date'),
@@ -59,9 +59,9 @@ export function generateCSV(report: ReportData, pregnancyInfo: { due_date: strin
 
   // Appointments
   lines.push('CONSULTAS')
-  row('Data', 'Especialidade', 'Médico', 'Status')
+  row('Data', 'Tipo', 'Médico', 'Status')
   report.appointments.forEach(a =>
-    row(a.appointment_at?.slice(0, 10), a.specialty, a.doctor_name, a.status)
+    row(a.appointment_at?.slice(0, 10), a.appointment_type, a.doctor_name, a.status)
   )
   lines.push('')
 
@@ -69,7 +69,7 @@ export function generateCSV(report: ReportData, pregnancyInfo: { due_date: strin
   lines.push('EXAMES')
   row('Data', 'Exame', 'Resultado')
   report.exams.forEach(e =>
-    row(e.exam_date, e.name, e.has_result ? 'Sim' : 'Não')
+    row(e.exam_date, e.exam_name, e.result ?? 'Pendente')
   )
   lines.push('')
 
@@ -81,8 +81,8 @@ export function generateCSV(report: ReportData, pregnancyInfo: { due_date: strin
 
   // Symptoms
   lines.push('SINTOMAS')
-  row('Data', 'Sintoma', 'Intensidade')
-  report.symptoms.forEach(s => row(s.log_date, s.symptom_name, s.severity))
+  row('Data', 'Náusea (1-5)', 'Descrição dor')
+  report.symptoms.forEach(s => row(s.log_date, s.nausea_level, s.pain_description))
   lines.push('')
 
   // Kicks

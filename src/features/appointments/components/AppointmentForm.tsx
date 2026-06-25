@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import type { Appointment } from '../services/appointmentService'
@@ -25,7 +25,7 @@ interface Props {
 
 export function AppointmentForm({ initial, onSubmit, onClose, loading }: Props) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema) as unknown as Resolver<FormValues>,
     defaultValues: {
       title: '',
       appointment_type: 'obstetrica',
@@ -63,7 +63,7 @@ export function AppointmentForm({ initial, onSubmit, onClose, loading }: Props) 
 
   return (
     <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title fw-bold">
@@ -85,7 +85,7 @@ export function AppointmentForm({ initial, onSubmit, onClose, loading }: Props) 
               </div>
 
               <div className="row g-3 mb-3">
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold">Tipo</label>
                   <select {...register('appointment_type')} className="form-select">
                     <option value="obstetrica">Obstétrica</option>
@@ -93,7 +93,7 @@ export function AppointmentForm({ initial, onSubmit, onClose, loading }: Props) 
                     <option value="outro">Outro</option>
                   </select>
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold">Status</label>
                   <select {...register('status')} className="form-select">
                     <option value="scheduled">Agendada</option>
@@ -116,7 +116,7 @@ export function AppointmentForm({ initial, onSubmit, onClose, loading }: Props) 
               </div>
 
               <div className="row g-3 mb-3">
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold">Médico</label>
                   <input
                     {...register('doctor_name')}
@@ -124,7 +124,7 @@ export function AppointmentForm({ initial, onSubmit, onClose, loading }: Props) 
                     placeholder="Dr(a). Nome"
                   />
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold">Clínica / Hospital</label>
                   <input
                     {...register('clinic_name')}

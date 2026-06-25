@@ -1,37 +1,44 @@
 import { test, expect } from '@playwright/test'
-
-const BASE = 'http://localhost:5173/baby-journey-app'
-const EMAIL = process.env.TEST_EMAIL ?? 'test@example.com'
-const PASSWORD = process.env.TEST_PASSWORD ?? 'password123'
-
-test.beforeEach(async ({ page }) => {
-  await page.goto(`${BASE}/login`)
-  await page.getByLabel(/email/i).fill(EMAIL)
-  await page.getByLabel(/senha/i).fill(PASSWORD)
-  await page.getByRole('button', { name: /entrar/i }).click()
-  await page.waitForURL(/\/dashboard/, { timeout: 10000 })
-  await page.goto(`${BASE}/appointments`)
-})
+import { url, login, requireCredentials } from './helpers'
 
 test.describe('Consultas', () => {
-  test('exibe página de consultas', async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
+    if (!requireCredentials()) return test.skip()
+    await login(page)
+    await page.goto(url('/appointments'))
     await expect(page.getByRole('heading', { name: /consultas/i })).toBeVisible()
+  })
+
+  test('exibe botão nova consulta', async ({ page }) => {
     await expect(page.getByRole('button', { name: /nova consulta/i })).toBeVisible()
   })
 
   test('abre modal de nova consulta', async ({ page }) => {
     await page.getByRole('button', { name: /nova consulta/i }).click()
     await expect(page.getByRole('dialog')).toBeVisible()
-    await expect(page.getByLabel(/especialidade/i)).toBeVisible()
+    await expect(page.getByPlaceholder(/obstetrícia|cardiologia|especialidade/i)).toBeVisible()
   })
 
-  test('cria nova consulta', async ({ page }) => {
+  test('fecha modal ao cancelar', async ({ page }) => {
     await page.getByRole('button', { name: /nova consulta/i }).click()
-    await page.getByLabel(/especialidade/i).fill('Obstetrícia')
-    await page.getByLabel(/médico/i).fill('Dr. Teste')
+    await expect(page.getByRole('dialog')).toBeVisible()
+    await page.getByRole('button', { name: /cancelar/i }).click()
+    await expect(page.getByRole('dialog')).not.toBeVisible()
+  })
+
+  test('cria nova consulta e exibe na lista', async ({ page }) => {
+    await page.getByRole('button', { name: /nova consulta/i }).click()
+    await expect(page.getByRole('dialog')).toBeVisible()
+
     const dateInput = page.locator('input[type="datetime-local"]').first()
-    await dateInput.fill('2026-08-01T10:00')
+    await dateInput.fill('2026-09-15T10:00')
+
+    // Fill specialty field (first text input in form)
+    const specialty = page.locator('.modal input[type="text"]').first()
+    await specialty.fill('Obstetrícia Playwright')
+
     await page.getByRole('button', { name: /salvar/i }).click()
-    await expect(page.getByText(/obstetrícia/i)).toBeVisible({ timeout: 5000 })
+    await expect(page.getByRole('dialog')).not.toBeVisible({ timeout: 8000 })
+    await expect(page.getByText(/obstetrícia playwright/i)).toBeVisible({ timeout: 8000 })
   })
 })

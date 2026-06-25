@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { format, parseISO, differenceInDays } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { Globe, Plus, Trash2, CheckCircle2, Circle, ChevronRight, Lightbulb } from 'lucide-react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Link } from 'react-router-dom'
@@ -380,7 +380,7 @@ export function InternationalMovePage() {
         </Link>
       </div>
 
-      <MovePlanSection movePlan={movePlan} onSaved={v => savePlan.mutateAsync(v)} />
+      <MovePlanSection movePlan={movePlan} onSaved={v => savePlan.mutateAsync(v).then(() => {})} />
 
       {totalItems > 0 && (
         <div className="card border-0 shadow-sm p-3 mb-4">

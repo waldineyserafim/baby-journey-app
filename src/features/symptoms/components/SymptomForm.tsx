@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { format } from 'date-fns'
@@ -66,7 +66,7 @@ function LevelInput({ label, name, register }: { label: string; name: string; re
 
 export function SymptomForm({ initial, onSubmit, onClose, loading }: Props) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<SymptomFormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema) as unknown as Resolver<SymptomFormValues>,
     defaultValues: emptyDefaults(),
   })
 
@@ -92,7 +92,7 @@ export function SymptomForm({ initial, onSubmit, onClose, loading }: Props) {
 
   return (
     <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title fw-bold">{initial ? 'Editar Registro' : 'Registrar Sintomas'}</h5>
@@ -102,7 +102,7 @@ export function SymptomForm({ initial, onSubmit, onClose, loading }: Props) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="modal-body">
               <div className="row g-3 mb-4">
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold">Data *</label>
                   <input
                     {...register('log_date')}
@@ -111,7 +111,7 @@ export function SymptomForm({ initial, onSubmit, onClose, loading }: Props) {
                   />
                   {errors.log_date && <div className="invalid-feedback">{errors.log_date.message}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold">Peso (kg)</label>
                   <input
                     {...register('weight_kg')}
@@ -129,16 +129,16 @@ export function SymptomForm({ initial, onSubmit, onClose, loading }: Props) {
               </p>
 
               <div className="row g-3 mb-4">
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <LevelInput label="Náusea" name="nausea_level" register={register} />
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <LevelInput label="Azia" name="heartburn_level" register={register} />
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <LevelInput label="Inchaço" name="swelling_level" register={register} />
                 </div>
-                <div className="col-4 d-flex align-items-end">
+                <div className="col-12 col-sm-4 d-flex align-items-end">
                   <div className="form-check">
                     <input {...register('vomiting')} type="checkbox" className="form-check-input" id="vomiting" />
                     <label className="form-check-label fw-semibold" htmlFor="vomiting" style={{ fontSize: '0.85rem' }}>
@@ -153,7 +153,7 @@ export function SymptomForm({ initial, onSubmit, onClose, loading }: Props) {
               </p>
 
               <div className="row g-3 mb-4">
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <label className="form-label fw-semibold" style={{ fontSize: '0.85rem' }}>PA Sistólica</label>
                   <input
                     {...register('blood_pressure_systolic')}
@@ -162,7 +162,7 @@ export function SymptomForm({ initial, onSubmit, onClose, loading }: Props) {
                     placeholder="Ex: 120"
                   />
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <label className="form-label fw-semibold" style={{ fontSize: '0.85rem' }}>PA Diastólica</label>
                   <input
                     {...register('blood_pressure_diastolic')}
@@ -171,7 +171,7 @@ export function SymptomForm({ initial, onSubmit, onClose, loading }: Props) {
                     placeholder="Ex: 80"
                   />
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-sm-4">
                   <label className="form-label fw-semibold" style={{ fontSize: '0.85rem' }}>Glicemia (mg/dL)</label>
                   <input
                     {...register('blood_glucose')}

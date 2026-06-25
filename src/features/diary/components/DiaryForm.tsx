@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { format } from 'date-fns'
@@ -26,7 +26,7 @@ interface Props {
 
 export function DiaryForm({ initial, currentWeek, onSubmit, onClose, loading }: Props) {
   const { register, handleSubmit, watch, setValue, reset, formState: { errors } } = useForm<DiaryFormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema) as unknown as Resolver<DiaryFormValues>,
     defaultValues: {
       entry_date: format(new Date(), 'yyyy-MM-dd'),
       content: '',
@@ -53,7 +53,7 @@ export function DiaryForm({ initial, currentWeek, onSubmit, onClose, loading }: 
 
   return (
     <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title fw-bold">{initial ? 'Editar entrada' : 'Nova entrada no diário'}</h5>
@@ -63,7 +63,7 @@ export function DiaryForm({ initial, currentWeek, onSubmit, onClose, loading }: 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="modal-body">
               <div className="row g-3 mb-4">
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold small">Data *</label>
                   <input
                     {...register('entry_date')}
@@ -72,7 +72,7 @@ export function DiaryForm({ initial, currentWeek, onSubmit, onClose, loading }: 
                   />
                   {errors.entry_date && <div className="invalid-feedback">{errors.entry_date.message}</div>}
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold small">Semana gestacional</label>
                   <input
                     {...register('week_number')}

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { ShieldAlert, Users, Baby, Building2, ShoppingCart, Plus, Edit2, Eye, EyeOff } from 'lucide-react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useAuth } from '@/shared/hooks/useAuth'
@@ -42,7 +42,7 @@ function CatalogModal({
   loading: boolean
 }) {
   const { register, handleSubmit, formState: { errors } } = useForm<CatalogValues>({
-    resolver: zodResolver(catalogSchema),
+    resolver: zodResolver(catalogSchema) as any,
     defaultValues: item ? {
       item_name: item.item_name,
       category: item.category,
@@ -67,7 +67,7 @@ function CatalogModal({
 
   return (
     <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title fw-bold">{item ? 'Editar item' : 'Novo item do catálogo'}</h5>

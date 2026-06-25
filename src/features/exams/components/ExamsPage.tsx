@@ -27,10 +27,11 @@ export function ExamsPage() {
   function openEdit(e: Exam) { setEditing(e); setModal('edit') }
   function closeModal() { setModal(null); setEditing(null) }
 
-  async function handleSubmit(values: Parameters<typeof create.mutateAsync>[0]) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async function handleSubmit(values: any) {
     const payload = {
       ...values,
-      week_number: values.week_number === '' ? null : Number(values.week_number),
+      week_number: !values.week_number ? null : Number(values.week_number),
     }
     if (modal === 'edit' && editing) {
       await update.mutateAsync({ id: editing.id, fields: payload })

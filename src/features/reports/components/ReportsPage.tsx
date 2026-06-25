@@ -81,7 +81,7 @@ export function ReportsPage() {
   // Computed stats
   const appointmentsDone = report.appointments.filter(a => a.status === 'realizada').length
   const vaccinesDone = report.vaccines.filter(v => v.status === 'aplicada').length
-  const examsWithResult = report.exams.filter(e => e.has_result).length
+  const examsWithResult = report.exams.filter(e => !!e.result).length
   const layettePurchased = report.layette.filter(l => ['comprado', 'ganho'].includes(l.status)).length
   const bagPacked = report.hospitalBag.filter(b => b.status === 'packed').length
   const totalKicks = report.kicks.reduce((sum, k) => sum + k.kick_count, 0)
@@ -271,7 +271,8 @@ export function ReportsPage() {
             <div className="d-flex flex-column gap-1">
               {Object.entries(
                 report.symptoms.reduce<Record<string, number>>((acc, s) => {
-                  acc[s.symptom_name] = (acc[s.symptom_name] ?? 0) + 1
+                  const key = s.pain_description ?? (s.nausea_level ? `Náusea nível ${s.nausea_level}` : 'Sintoma')
+                  acc[key] = (acc[key] ?? 0) + 1
                   return acc
                 }, {})
               )
@@ -327,7 +328,7 @@ export function ReportsPage() {
                     style={{ width: 8, height: 8, background: '#0ea5e9' }}
                   />
                   <span className="small flex-grow-1">
-                    {a.specialty ?? 'Consulta'}
+                    {a.appointment_type ?? 'Consulta'}
                     {a.doctor_name && ` · ${a.doctor_name}`}
                   </span>
                   <span className="text-muted" style={{ fontSize: '0.72rem' }}>

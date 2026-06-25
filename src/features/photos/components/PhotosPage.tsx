@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { format, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { Camera, Plus, Trash2, X, Upload } from 'lucide-react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { usePhotos } from '../hooks/usePhotos'
@@ -31,7 +31,7 @@ function UploadModal({
   const inputRef = useRef<HTMLInputElement>(null)
 
   const { register, handleSubmit, formState: { errors } } = useForm<UploadValues>({
-    resolver: zodResolver(uploadSchema),
+    resolver: zodResolver(uploadSchema) as unknown as Resolver<UploadValues>,
     defaultValues: {
       photo_date: format(new Date(), 'yyyy-MM-dd'),
       category: '',
@@ -56,7 +56,7 @@ function UploadModal({
 
   return (
     <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title fw-bold">Adicionar Foto</h5>
@@ -162,7 +162,7 @@ function LightboxModal({ photo, onClose, onDelete }: { photo: Photo; onClose: ()
       onClick={onClose}
     >
       <div
-        className="modal-dialog modal-dialog-centered modal-lg"
+        className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg"
         onClick={e => e.stopPropagation()}
       >
         <div className="modal-content border-0" style={{ background: 'transparent' }}>
@@ -338,5 +338,3 @@ export function PhotosPage() {
     </div>
   )
 }
-
-type UploadValues = z.infer<typeof uploadSchema>

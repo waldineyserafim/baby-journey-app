@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Plus, Edit2, Trash2, ShoppingBag, Package } from 'lucide-react'
-import { useForm } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useLayette } from '../hooks/useLayette'
@@ -70,7 +70,7 @@ function AddItemModal({
   )
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<AddValues>({
-    resolver: zodResolver(addSchema),
+    resolver: zodResolver(addSchema) as any,
     defaultValues: { status: 'planned', quantity_ideal: '', planned_value: '', store_name: '', notes: '' },
   })
 
@@ -79,7 +79,7 @@ function AddItemModal({
 
   return (
     <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title fw-bold">Adicionar ao Enxoval</h5>
@@ -121,11 +121,11 @@ function AddItemModal({
                   </div>
 
                   <div className="row g-3 mb-3">
-                    <div className="col-6">
+                    <div className="col-12 col-sm-6">
                       <label className="form-label fw-semibold small">Qtd. ideal</label>
                       <input {...register('quantity_ideal')} type="number" min={1} className="form-control" placeholder={String(selectedItem?.ideal_quantity ?? '')} />
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-sm-6">
                       <label className="form-label fw-semibold small">Valor planejado (R$)</label>
                       <input {...register('planned_value')} type="number" step="0.01" min={0} className="form-control" placeholder="0,00" />
                     </div>
@@ -182,7 +182,7 @@ function EditItemModal({
   loading: boolean
 }) {
   const { register, handleSubmit } = useForm<EditValues>({
-    resolver: zodResolver(editSchema),
+    resolver: zodResolver(editSchema) as any,
     defaultValues: {
       status: item.status ?? 'planned',
       quantity_purchased: item.quantity_purchased ?? '',
@@ -196,7 +196,7 @@ function EditItemModal({
 
   return (
     <div className="modal d-block" tabIndex={-1} style={{ background: 'rgba(0,0,0,0.5)' }}>
-      <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title fw-bold">{item.catalog.item_name}</h5>
@@ -215,22 +215,22 @@ function EditItemModal({
               </div>
 
               <div className="row g-3 mb-3">
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold small">Qtd. comprada</label>
                   <input {...register('quantity_purchased')} type="number" min={0} className="form-control" />
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold small">Qtd. recebida</label>
                   <input {...register('quantity_received')} type="number" min={0} className="form-control" />
                 </div>
               </div>
 
               <div className="row g-3 mb-3">
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold small">Valor pago (R$)</label>
                   <input {...register('paid_value')} type="number" step="0.01" min={0} className="form-control" />
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-sm-6">
                   <label className="form-label fw-semibold small">Data da compra</label>
                   <input {...register('purchase_date')} type="date" className="form-control" />
                 </div>
