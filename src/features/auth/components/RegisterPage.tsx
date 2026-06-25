@@ -5,20 +5,19 @@ import { z } from 'zod'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/shared/hooks/useAuth'
 import { ROUTES } from '@/shared/constants/routes'
-import { supabase } from '@/infrastructure/supabase/client'
 
 const schema = z.object({
   fullName: z.string().min(3, 'Nome muito curto'),
   email: z.string().email('Email inválido'),
   password: z.string().min(6, 'Mínimo 6 caracteres'),
-  familyName: z.string().min(2, 'Informe o nome da família'),
 })
 type FormData = z.infer<typeof schema>
 
 export function RegisterPage() {
-  const { signUp, refreshProfile } = useAuth()
+  const { signUp } = useAuth()
   const navigate = useNavigate()
   const [error, setError] = useState<string | null>(null)
+  const [emailSent, setEmailSent] = useState(false)
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -36,26 +35,33 @@ export function RegisterPage() {
       return
     }
 
-    const { data: tenant, error: tenantError } = await supabase
-      .from('tenants')
-      .insert({ name: data.familyName })
-      .select()
-      .single()
-
-    if (tenantError) {
-      setError('Erro ao criar família.')
+    if (!authData.session) {
+      // Email confirmation required — user needs to verify before continuing
+      setEmailSent(true)
       return
     }
 
-    await supabase.from('profiles').upsert({
-      id: authData.user.id,
-      tenant_id: tenant.id,
-      full_name: data.fullName,
-      role: 'partner',
-    })
-
-    await refreshProfile()
+    // Session active (email confirmation disabled) — go straight to onboarding
+    // OnboardingPage handles family name + tenant + pregnancy creation
     navigate(ROUTES.ONBOARDING)
+  }
+
+  if (emailSent) {
+    return (
+      <>
+        <div className="text-center mb-4">
+          <div className="fs-1">📧</div>
+          <h2 className="fw-bold mb-1" style={{ fontSize: '1.25rem' }}>Verifique seu email</h2>
+          <p className="text-muted small mb-0">Enviamos um link de confirmação para o seu email.</p>
+        </div>
+        <div className="alert alert-info py-2 small text-center">
+          Após confirmar, volte aqui e faça login para continuar o cadastro.
+        </div>
+        <div className="text-center small mt-3">
+          <Link to={ROUTES.LOGIN} style={{ color: '#7c3aed' }}>Ir para o login</Link>
+        </div>
+      </>
+    )
   }
 
   return (
@@ -74,16 +80,6 @@ export function RegisterPage() {
             placeholder="Ana Silva"
           />
           {errors.fullName && <div className="invalid-feedback">{errors.fullName.message}</div>}
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label small fw-semibold">Nome da família</label>
-          <input
-            {...register('familyName')}
-            className={`form-control ${errors.familyName ? 'is-invalid' : ''}`}
-            placeholder="Família Silva"
-          />
-          {errors.familyName && <div className="invalid-feedback">{errors.familyName.message}</div>}
         </div>
 
         <div className="mb-3">
