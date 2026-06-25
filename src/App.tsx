@@ -7,6 +7,7 @@ import { useAuth } from '@/shared/hooks/useAuth'
 import { useCurrentPregnancy } from '@/shared/hooks/useCurrentPregnancy'
 import { ROUTES } from '@/shared/constants/routes'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '@/shared/styles/theme.css'
 
 const LoginPage = lazy(() => import('@/features/auth/components/LoginPage').then(m => ({ default: m.LoginPage })))
 const RegisterPage = lazy(() => import('@/features/auth/components/RegisterPage').then(m => ({ default: m.RegisterPage })))
@@ -44,7 +45,7 @@ const queryClient = new QueryClient({
 function Spinner() {
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
-      <div className="spinner-border" style={{ color: '#7c3aed' }} role="status">
+      <div className="spinner-border bp-spinner" role="status">
         <span className="visually-hidden">Carregando...</span>
       </div>
     </div>

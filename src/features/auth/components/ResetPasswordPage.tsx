@@ -81,7 +81,7 @@ export function ResetPasswordPage() {
               </p>
               <button
                 className="btn w-100 text-white fw-semibold"
-                style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
+                style={{ background: '#0D9488', borderRadius: 14 }}
                 onClick={() => navigate(ROUTES.LOGIN)}
               >
                 Ir para o login
@@ -106,7 +106,7 @@ export function ResetPasswordPage() {
               </p>
               <button
                 className="btn w-100 text-white fw-semibold"
-                style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
+                style={{ background: '#0D9488', borderRadius: 14 }}
                 onClick={() => navigate(ROUTES.DASHBOARD)}
               >
                 Ir para o app
@@ -187,7 +187,7 @@ export function ResetPasswordPage() {
               <button
                 type="submit"
                 className="btn w-100 text-white fw-semibold"
-                style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
+                style={{ background: '#0D9488', borderRadius: 14 }}
                 disabled={isSubmitting}
               >
                 {isSubmitting && <span className="spinner-border spinner-border-sm me-2" />}

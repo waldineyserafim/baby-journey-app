@@ -212,7 +212,7 @@ export function SettingsPage() {
             <div className="d-flex gap-2">
               <button
                 className="btn btn-sm text-white"
-                style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
+                style={{ background: '#0D9488', borderRadius: 10 }}
                 onClick={() => createInvite.mutate()}
                 disabled={createInvite.isPending}
               >

@@ -73,7 +73,7 @@ export function ContractionsPage() {
             width: 160, height: 160,
             background: isActive
               ? 'linear-gradient(135deg, #ef4444, #dc2626)'
-              : 'linear-gradient(135deg, #7c3aed, #db2777)',
+              : '#0D9488',
           }}
         >
           <div className="text-white text-center">
@@ -89,7 +89,7 @@ export function ContractionsPage() {
           style={{
             background: isActive
               ? 'linear-gradient(135deg, #ef4444, #dc2626)'
-              : 'linear-gradient(135deg, #7c3aed, #db2777)',
+              : '#0D9488',
             borderRadius: 12,
           }}
           onClick={isActive ? handleStop : handleStart}

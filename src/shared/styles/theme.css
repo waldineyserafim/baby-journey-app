@@ -1,0 +1,75 @@
+/* Baby's Plan — Design System Tokens
+   Primary CTA: teal (#0D9488)
+   Brand identity: violet (#7C3AED)
+*/
+
+:root {
+  --bp-teal:        #0D9488;
+  --bp-teal-dark:   #0C7A72;
+  --bp-teal-light:  #CCFBF1;
+  --bp-teal-subtle: #F0FDFA;
+  --bp-violet:      #7C3AED;
+  --bp-violet-light:#EDE9FE;
+}
+
+/* ── Bootstrap primary override → teal ── */
+.btn-primary {
+  --bs-btn-bg:                var(--bp-teal);
+  --bs-btn-border-color:      var(--bp-teal);
+  --bs-btn-hover-bg:          var(--bp-teal-dark);
+  --bs-btn-hover-border-color:var(--bp-teal-dark);
+  --bs-btn-active-bg:         var(--bp-teal-dark);
+  --bs-btn-active-border-color:var(--bp-teal-dark);
+  --bs-btn-disabled-bg:       var(--bp-teal);
+  --bs-btn-disabled-border-color:var(--bp-teal);
+}
+
+/* ── Primary action button (replaces violet gradient on CTAs) ── */
+.btn-action {
+  background: var(--bp-teal) !important;
+  border-color: var(--bp-teal) !important;
+  color: #fff !important;
+  border-radius: 14px;
+}
+.btn-action:hover {
+  background: var(--bp-teal-dark) !important;
+  border-color: var(--bp-teal-dark) !important;
+}
+.btn-action:disabled {
+  background: var(--bp-teal) !important;
+  opacity: 0.65;
+}
+
+/* ── Active nav highlight ── */
+.nav-active-teal {
+  background: var(--bp-teal) !important;
+  color: #fff !important;
+}
+
+/* ── Spinner ── */
+.bp-spinner { color: var(--bp-teal) !important; }
+
+/* ── Brand link color ── */
+.bp-link { color: var(--bp-violet); text-decoration: none; }
+.bp-link:hover { color: var(--bp-teal); }
+
+/* ── Form focus ring → teal ── */
+.form-control:focus {
+  border-color: var(--bp-teal);
+  box-shadow: 0 0 0 0.2rem rgba(13, 148, 136, 0.2);
+}
+.input-group-text {
+  border-radius: 12px 0 0 12px;
+}
+.form-control {
+  border-radius: 12px;
+}
+.input-group .form-control:not(:first-child) {
+  border-radius: 0;
+}
+.input-group .form-control:last-child {
+  border-radius: 0 12px 12px 0;
+}
+.input-group:has(.input-group-text:last-child) .form-control {
+  border-radius: 0;
+}

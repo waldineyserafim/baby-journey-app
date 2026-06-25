@@ -147,7 +147,7 @@ export function JoinPage() {
             </div>
             <button
               className="btn text-white w-100 fw-semibold py-2 mb-2"
-              style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', borderRadius: 10 }}
+              style={{ background: '#0D9488', borderRadius: 10 }}
               onClick={handleAccept}
             >
               <Users size={16} className="me-2" />

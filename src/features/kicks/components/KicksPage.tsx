@@ -33,7 +33,7 @@ export function KicksPage() {
             width: 160, height: 160,
             background: goalReached
               ? 'linear-gradient(135deg, #22c55e, #16a34a)'
-              : 'linear-gradient(135deg, #7c3aed, #db2777)',
+              : '#0D9488',
             cursor: 'pointer',
             boxShadow: '0 8px 32px rgba(124,58,237,0.3)',
             transition: 'transform 0.1s',
@@ -59,7 +59,7 @@ export function KicksPage() {
         <div className="d-flex gap-2 justify-content-center">
           <button
             className="btn btn-lg text-white fw-bold px-5"
-            style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', borderRadius: 12 }}
+            style={{ background: '#0D9488', borderRadius: 12 }}
             onClick={() => tap.mutate(count + 1)}
             disabled={tap.isPending}
           >

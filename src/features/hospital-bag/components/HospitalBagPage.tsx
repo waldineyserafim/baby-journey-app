@@ -77,7 +77,7 @@ export function HospitalBagPage() {
               className="progress-bar"
               style={{
                 width: `${Math.round((totalPacked / totalItems) * 100)}%`,
-                background: 'linear-gradient(135deg, #7c3aed, #db2777)',
+                background: '#0D9488',
               }}
             />
           </div>

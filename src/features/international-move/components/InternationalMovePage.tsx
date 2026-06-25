@@ -158,7 +158,7 @@ function MovePlanSection({
           <button
             type="submit"
             className="btn btn-sm text-white px-4"
-            style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
+            style={{ background: '#0D9488', borderRadius: 14 }}
             disabled={isSubmitting}
           >
             {isSubmitting && <span className="spinner-border spinner-border-sm me-1" />}

@@ -130,7 +130,7 @@ export function AppLayout() {
                 }
                 style={({ isActive }) => ({
                   fontSize: '0.875rem',
-                  background: isActive ? 'linear-gradient(135deg, #7c3aed, #db2777)' : undefined,
+                  background: isActive ? '#0D9488' : undefined,
                 })}
               >
                 <Icon size={16} />
@@ -152,7 +152,7 @@ export function AppLayout() {
             <div className="fw-semibold small mb-1" style={{ color: '#7c3aed' }}>Instalar no celular</div>
             <button
               className="btn btn-sm text-white w-100"
-              style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', fontSize: '0.75rem' }}
+              style={{ background: '#0D9488', fontSize: '0.75rem', borderRadius: 10 }}
               onClick={install}
             >
               📲 Instalar Baby's Plan
@@ -335,7 +335,7 @@ export function AppLayout() {
             {canInstall && (
               <button
                 className="btn w-100 text-white mt-2 py-3"
-                style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)', borderRadius: 12 }}
+                style={{ background: '#0D9488', borderRadius: 12 }}
                 onClick={() => { install(); setMenuOpen(false) }}
               >
                 📲 Instalar Baby's Plan no celular

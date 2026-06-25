@@ -125,7 +125,7 @@ export function LoginPage() {
           <button
             type="submit"
             className="btn w-100 text-white fw-semibold"
-            style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
+            style={{ background: '#0D9488', borderRadius: 14 }}
             disabled={forgotForm.formState.isSubmitting}
           >
             {forgotForm.formState.isSubmitting && <span className="spinner-border spinner-border-sm me-2" />}
@@ -204,7 +204,7 @@ export function LoginPage() {
         <button
           type="submit"
           className="btn w-100 text-white fw-semibold mb-3"
-          style={{ background: 'linear-gradient(135deg, #7c3aed, #db2777)' }}
+          style={{ background: '#0D9488', borderRadius: 14 }}
           disabled={loginForm.formState.isSubmitting}
         >
           {loginForm.formState.isSubmitting && <span className="spinner-border spinner-border-sm me-2" />}
