@@ -8,7 +8,6 @@ import { useCurrentPregnancy } from '@/shared/hooks/useCurrentPregnancy'
 import { supabase } from '@/infrastructure/supabase/client'
 import { ROUTES } from '@/shared/constants/routes'
 import { addDays, format } from 'date-fns'
-import { Baby } from 'lucide-react'
 
 const schema = z.object({
   familyName: z.string().optional(),
@@ -50,8 +49,8 @@ export function OnboardingPage() {
   if (authLoading || pregnancyLoading) {
     return (
       <div className="min-vh-100 d-flex align-items-center justify-content-center"
-        style={{ background: 'linear-gradient(135deg, #fce7f3, #ede9fe)' }}>
-        <div className="spinner-border" style={{ color: '#7c3aed' }} role="status">
+        style={{ background: 'linear-gradient(135deg, #f0fdfa, #fce7f3)' }}>
+        <div className="spinner-border bp-spinner" role="status">
           <span className="visually-hidden">Carregando...</span>
         </div>
       </div>
@@ -108,15 +107,22 @@ export function OnboardingPage() {
 
   return (
     <div className="min-vh-100 d-flex align-items-center justify-content-center py-5"
-      style={{ background: 'linear-gradient(135deg, #fce7f3, #ede9fe)' }}>
+      style={{ background: 'linear-gradient(135deg, #f0fdfa, #fce7f3)' }}>
       <div className="w-100 px-3" style={{ maxWidth: 480 }}>
 
         <div className="text-center mb-4">
-          <div className="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-            style={{ width: 64, height: 64, background: 'linear-gradient(135deg, #f9a8d4, #c084fc)' }}>
-            <Baby size={32} className="text-white" />
+          <div className="d-inline-flex mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 108" width="64" height="64" aria-hidden="true">
+              <circle cx="27" cy="13" r="8" fill="#F28C82"/>
+              <path d="M27 21 C13 30 11 52 27 62 C34 67 42 70 48 73" stroke="#F28C82" strokeWidth="13" strokeLinecap="round" fill="none"/>
+              <circle cx="73" cy="13" r="8" fill="#4FB6AC"/>
+              <path d="M73 21 C87 30 89 52 73 62 C66 67 58 70 52 73" stroke="#4FB6AC" strokeWidth="13" strokeLinecap="round" fill="none"/>
+              <circle cx="50" cy="37" r="5.5" fill="#4FB6AC"/>
+              <path d="M50 43 C50 52 50 59 50 64" stroke="#4FB6AC" strokeWidth="9" strokeLinecap="round" fill="none"/>
+              <path d="M10 85 C22 77 33 89 50 83 C67 77 78 89 90 83" stroke="#4FB6AC" strokeWidth="4.5" strokeLinecap="round" fill="none"/>
+            </svg>
           </div>
-          <h2 className="fw-bold" style={{ color: '#7c3aed' }}>Configure sua gestação</h2>
+          <h2 className="fw-bold">Configure sua gestação</h2>
           <p className="text-muted small mb-0">Vamos personalizar sua jornada</p>
         </div>
 

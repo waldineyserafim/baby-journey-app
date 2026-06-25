@@ -1,13 +1,27 @@
 /* Baby's Plan — Design System Tokens
-   Primary CTA: teal (#0D9488)
-   Brand identity: violet (#7C3AED)
+   CTA buttons: teal-ui (#0D9488)
+   Brand logo: teal-brand (#4FB6AC) + coral (#F28C82)
+   Identity accents: violet (#7C3AED)
 */
 
 :root {
+  /* UI teal — interactive elements, buttons, nav active */
   --bp-teal:        #0D9488;
   --bp-teal-dark:   #0C7A72;
   --bp-teal-light:  #CCFBF1;
   --bp-teal-subtle: #F0FDFA;
+
+  /* Brand teal — logo symbol, "Baby's" logotype */
+  --bp-teal-brand:  #4FB6AC;
+
+  /* Brand coral — "Plan" logotype, warmth accents */
+  --bp-coral:       #F28C82;
+  --bp-coral-dark:  #E0726A;
+
+  /* Brand background and text (Logo Guidelines) */
+  --bp-bg:          #FAFAF8;
+  --bp-text:        #243447;
+
   --bp-violet:      #7C3AED;
   --bp-violet-light:#EDE9FE;
 }

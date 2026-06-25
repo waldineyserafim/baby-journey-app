@@ -1,9 +1,9 @@
 {
   "name": "Baby's Plan",
   "short_name": "Baby's Plan",
-  "description": "Acompanhe cada momento da sua gravidez",
-  "theme_color": "#f472b6",
-  "background_color": "#ffffff",
+  "description": "Organizando cada etapa da sua jornada. Da gravidez aos primeiros anos de vida.",
+  "theme_color": "#4FB6AC",
+  "background_color": "#FAFAF8",
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "/",

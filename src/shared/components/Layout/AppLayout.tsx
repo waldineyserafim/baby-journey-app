@@ -109,13 +109,19 @@ export function AppLayout() {
         {/* Logo */}
         <div className="px-3 py-4 border-bottom flex-shrink-0">
           <div className="d-flex align-items-center gap-2">
-            <div
-              className="rounded-circle d-flex align-items-center justify-content-center"
-              style={{ width: 36, height: 36, background: 'linear-gradient(135deg, #f9a8d4, #c084fc)' }}
-            >
-              <Baby size={18} className="text-white" />
-            </div>
-            <span className="fw-bold fs-6" style={{ color: '#7c3aed' }}>Baby's Plan</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 108" width="34" height="34" aria-hidden="true" style={{ flexShrink: 0 }}>
+              <circle cx="27" cy="13" r="8" fill="#F28C82"/>
+              <path d="M27 21 C13 30 11 52 27 62 C34 67 42 70 48 73" stroke="#F28C82" strokeWidth="13" strokeLinecap="round" fill="none"/>
+              <circle cx="73" cy="13" r="8" fill="#4FB6AC"/>
+              <path d="M73 21 C87 30 89 52 73 62 C66 67 58 70 52 73" stroke="#4FB6AC" strokeWidth="13" strokeLinecap="round" fill="none"/>
+              <circle cx="50" cy="37" r="5.5" fill="#4FB6AC"/>
+              <path d="M50 43 C50 52 50 59 50 64" stroke="#4FB6AC" strokeWidth="9" strokeLinecap="round" fill="none"/>
+              <path d="M10 85 C22 77 33 89 50 83 C67 77 78 89 90 83" stroke="#4FB6AC" strokeWidth="4.5" strokeLinecap="round" fill="none"/>
+            </svg>
+            <span className="fw-bold fs-6">
+              <span style={{ color: '#4FB6AC' }}>Baby's</span>{' '}
+              <span style={{ color: '#F28C82' }}>Plan</span>
+            </span>
           </div>
         </div>
 
@@ -190,13 +196,19 @@ export function AppLayout() {
         style={{ height: 56, zIndex: 1030 }}
       >
         <div className="d-flex align-items-center gap-2">
-          <div
-            className="rounded-circle d-flex align-items-center justify-content-center"
-            style={{ width: 28, height: 28, background: 'linear-gradient(135deg, #f9a8d4, #c084fc)' }}
-          >
-            <Baby size={14} className="text-white" />
-          </div>
-          <span className="fw-bold" style={{ color: '#7c3aed', fontSize: '1rem' }}>Baby's Plan</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 108" width="28" height="28" aria-hidden="true" style={{ flexShrink: 0 }}>
+            <circle cx="27" cy="13" r="8" fill="#F28C82"/>
+            <path d="M27 21 C13 30 11 52 27 62 C34 67 42 70 48 73" stroke="#F28C82" strokeWidth="13" strokeLinecap="round" fill="none"/>
+            <circle cx="73" cy="13" r="8" fill="#4FB6AC"/>
+            <path d="M73 21 C87 30 89 52 73 62 C66 67 58 70 52 73" stroke="#4FB6AC" strokeWidth="13" strokeLinecap="round" fill="none"/>
+            <circle cx="50" cy="37" r="5.5" fill="#4FB6AC"/>
+            <path d="M50 43 C50 52 50 59 50 64" stroke="#4FB6AC" strokeWidth="9" strokeLinecap="round" fill="none"/>
+            <path d="M10 85 C22 77 33 89 50 83 C67 77 78 89 90 83" stroke="#4FB6AC" strokeWidth="4.5" strokeLinecap="round" fill="none"/>
+          </svg>
+          <span className="fw-bold" style={{ fontSize: '1rem' }}>
+            <span style={{ color: '#4FB6AC' }}>Baby's</span>{' '}
+            <span style={{ color: '#F28C82' }}>Plan</span>
+          </span>
         </div>
         <NavLink
           to={ROUTES.NOTIFICATIONS}
