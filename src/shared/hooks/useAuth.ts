@@ -52,7 +52,7 @@ export function useAuth() {
   async function signInWithGoogle() {
     return supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/baby-journey-app/` },
+      options: { redirectTo: `${window.location.origin}/` },
     })
   }
 

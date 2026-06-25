@@ -43,7 +43,7 @@ export function LoginPage() {
   async function onForgot(data: ForgotData) {
     setError(null)
     const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
-      redirectTo: `${window.location.origin}/baby-journey-app/reset-password`,
+      redirectTo: `${window.location.origin}/reset-password`,
     })
     if (error) {
       setError('Não foi possível enviar o email. Verifique o endereço e tente novamente.')

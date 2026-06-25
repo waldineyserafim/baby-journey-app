@@ -136,7 +136,7 @@ function AppRoutes() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename="/baby-journey-app">
+      <BrowserRouter basename="/">
         <AppRoutes />
       </BrowserRouter>
     </QueryClientProvider>

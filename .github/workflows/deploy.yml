@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy App — app.babysplan.com
 
 on:
   push:

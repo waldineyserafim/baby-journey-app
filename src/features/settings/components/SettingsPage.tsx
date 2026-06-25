@@ -11,7 +11,7 @@ import {
   updateProfile,
 } from '../services/settingsService'
 
-const APP_BASE = `${window.location.origin}/baby-journey-app`
+const APP_BASE = window.location.origin
 
 export function SettingsPage() {
   const { profile } = useAuth()
