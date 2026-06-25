@@ -16,6 +16,7 @@ import {
   Globe,
   Stethoscope,
   FileText,
+  FolderOpen,
   LogOut,
   Bell,
   ChevronDown,
@@ -39,6 +40,7 @@ const navItems = [
   { to: ROUTES.HOSPITAL_BAG, icon: FileText, label: 'Mala' },
   { to: ROUTES.LAYETTE_INTELLIGENCE, icon: Sparkles, label: 'Inteligência' },
   { to: ROUTES.INTERNATIONAL_MOVE, icon: Globe, label: 'Mudança' },
+  { to: ROUTES.DOCUMENTS, icon: FolderOpen, label: 'Documentos' },
 ]
 
 export function AppLayout() {
